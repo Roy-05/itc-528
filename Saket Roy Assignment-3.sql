@@ -18,7 +18,7 @@ select product.supplier_id, supplier.name, count(*) from product, supplier
 where supplier.supplier_id = product.supplier_id
 group by product.supplier_id, supplier.name
 having count(*) > 2
-ORDER BY count(*) ASC;
+order by count(*) asc;
 
 /*
 ----------------------------------------
@@ -26,10 +26,10 @@ Chapter 4, Lesson B, page 147: Ex 4B-22.
 ----------------------------------------
 */
 
-SELECT invoice_no from rental_invoice
+select invoice_no from rental_invoice
 where invoice_date 
-BETWEEN to_date('01-NOV-10', 'dd-mon-yy') 
-AND to_date('30-NOV-10', 'dd-mon-yy');
+between to_date('01-NOV-10', 'dd-mon-yy') 
+and to_date('30-NOV-10', 'dd-mon-yy');
 
 /*
 ----------------------------------------

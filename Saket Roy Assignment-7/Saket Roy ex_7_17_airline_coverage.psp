@@ -1,0 +1,85 @@
+<%@page language="PL/SQL"%>
+<%@plsql procedure="airline_coverage"%>
+<%!  cursor flight_dest_cur is
+        select distinct dest_region 
+        from flight;
+
+    cursor flight_details(dest in varchar2) is 
+        select flight_no, name, dest_city 
+        from flight
+        where dest_region = dest;
+
+    flight_dest varchar2(15); %>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>PL/SQL Assignment-7</title>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #page-wrapper {
+                display: flex;
+                flex-direction: column;
+            }
+            #title {
+                margin: 10px auto;
+            }
+            .dest-region {
+                margin: 10px auto;
+            }
+            .flight-details {
+                margin: 10px auto;
+                width: 80%;
+            }
+            td {
+                text-align: center;
+                margin: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id=page-wrapper>
+            <h1 id="title">ABC Travel Details</h1>
+            <% open flight_dest_cur;
+                loop
+                    fetch flight_dest_cur into flight_dest;
+                    exit when flight_dest_cur%notfound; %>
+            <div class="dest-region">
+                Geographic Region: &nbsp; <%=flight_dest%>
+            </div>
+            <table class="flight-details">
+                <th>
+                    Carrier
+                </th>
+                <th>
+                    Flights
+                </th>
+                <th>
+                    Destination
+                </th>
+                <% for flight_row in flight_details(flight_dest) loop %>
+                    <tr>
+                        <td>
+                            <%=flight_row.name%>
+                        </td>
+                        <td>
+                            <%=flight_row.flight_no%>
+                        </td>
+                        <td>
+                            <%=flight_row.dest_city%>
+                        </td>
+                    </tr>
+                <% end loop; %>
+            </table> 
+            <% end loop;
+            close flight_dest_cur; %>
+        </div>
+    </body>
+</html>
+<% exception
+when others then %>
+<%=sqlerrm %>

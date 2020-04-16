@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="input_club"%>
+<head>
+<title>Input Club</title>
+</head>
+<body>
+<div align="center"><p><h2>Sporting Clubs</h2></p>
+<!-- Navigation Bar Links -->
+<a href="input_club">Input Club</a><br>
+<hr /></div>
+<br> <!-- Start Page Content -->
+<p><b>Enter New Club Details:</b><br />
+(All entries have to be completed)</p>
+<form action="create_club" method="post">
+Club Name: <input type="text" name="name_text" value="" /> <br /><br />
+Street: <input type="text" name="street_text" value="" /> <br /><br />
+City: <input type="text" name="city_text" value="" /> <br /><br />
+State: <input type="text" name="state_text" value="" /> <br /><br />
+Zip: <input type="text" name="zip_text" value="" /> <br /><br />
+<input type="submit" name="FormsButton1" value="Proceed"/>
+</form>
+<!-- End Page Content -->
+</body>
+</html>

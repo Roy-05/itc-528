@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="create_club"%>
+<%@plsql parameter="name_text" default="null"%> 
+<%@plsql parameter="street_text" default="null"%>
+<%@plsql parameter="city_text" default="null"%>
+<%@plsql parameter="state_text" default="null"%>
+<%@plsql parameter="zip_text" default="null"%>
+<%@plsql parameter="formsbutton1" default="null"%>
+<%! club_name_text sporting_clubs.name%type;
+club_id_text sporting_clubs.club_id%type; %>
+<head>
+<title>Create Club</title>
+</head>
+<body>
+<div align="center"><p><h2>Sporting Clubs</h2></p>
+<!-- Navigation Bar Links -->
+<a href="input_club">Input Club</a><br>
+<hr /></div>
+<br> <!-- Start Page Content -->
+<p><b>Success!</b><br /></p>
+<% insert into sporting_clubs (club_id, name, street, city, state, zip) 
+values (club_sequence.nextval,name_text, street_text, city_text, state_text, zip_text);
+commit;
+
+select club_sequence.currval into club_id_text from dual;
+select name into club_name_text 
+from sporting_clubs 
+where club_id = club_id_text; %>
+<div>
+<p>New Club <%=club_name_text%> having ID <%=club_id_text%> successfully created!</p
+</div>
+<!-- End Page Content -->
+</body>
+</html>

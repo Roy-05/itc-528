@@ -1,2 +1,1 @@
-# itc-528
-Database Development using Oracle
+# Database Development using Oracle
